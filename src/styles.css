@@ -14,18 +14,26 @@ body {
 }
 
 .btn {
+  display: inline-block;  
+  width: 315px;  
   background-color: #4e46e5;
   color: #fff;
   border: none;
   border-radius: 8px;
-  padding: 10px 20px;
+  padding: 12px 16px;
   cursor: pointer;
   font-size: 16px;
   transition: 0.2s ease;
+  box-shadow: 0 9px #999;
+}
+
+.btn:active {
+  box-shadow: 0 5px #666;
+  transform: translateY(4px);
 }
 
 .btn:hover {
-  background-color: #4338ca;
+  background-color: #38c0ca;
 }
 
 .card {
@@ -45,4 +53,32 @@ body {
 
 .card p {
   color: #4b5563;
+}
+
+input[type="text"] {
+  width: 280px;
+  padding: 12px 16px;
+  font-size: 16px;
+  border: 2px solid #d1d5db;
+  border-radius: 10px;
+  outline: none;
+  transition: all 0.25s ease;
+  background-color: #ffffff;
+  color: #111827;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.05);
+}
+
+input[type="text"]::placeholder {
+  color: #9ca3af;
+}
+
+input[type="text"]:hover {
+  border-color: #a5b4fc;
+  box-shadow: 0 3px 8px rgba(79, 70, 229, 0.1);
+}
+
+input[type="text"]:focus {
+  border-color: #4f46e5;
+  box-shadow: 0 0 0 4px rgba(79, 70, 229, 0.15);
+  background-color: #f9fafb;
 }

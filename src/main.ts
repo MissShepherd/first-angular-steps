@@ -11,14 +11,15 @@ import { Component } from '@angular/core';
       <div class="card">
         <h2>Example Card</h2>
         <p>This is a simple card with a bit of CSS styling.</p>
-        <button class="btn" (click)="onClick()">Click Me</button>
+        <br><input #box type="text" placeholder="Type something..." />
+        <button class="btn" (click)="onClick()">Click Me</button> 
       </div>
     </div>
   `
 })
 export class AppComponent {
   onClick() {
-    alert('Button clicked!');
+
   }
 }
 
