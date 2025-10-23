@@ -1,16 +1,25 @@
-import { Component } from '@angular/core';
 import { bootstrapApplication } from '@angular/platform-browser';
+import { Component } from '@angular/core';
 
 @Component({
   selector: 'app-root',
-  standalone: true,
   template: `
-    <div class="card">
-      <h1>Hello Angular</h1>
-      <p>This is a minimal Angular base example.</p>
-    </div>
-  `,
-})
-export class AppComponent {}
+    <div class="container">
+      <h1>Welcome to Angular Base</h1>
 
-bootstrapApplication(AppComponent).catch(err => console.error(err));
+
+      <div class="card">
+        <h2>Example Card</h2>
+        <p>This is a simple card with a bit of CSS styling.</p>
+        <button class="btn" (click)="onClick()">Click Me</button>
+      </div>
+    </div>
+  `
+})
+export class AppComponent {
+  onClick() {
+    alert('Button clicked!');
+  }
+}
+
+bootstrapApplication(AppComponent);
