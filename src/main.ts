@@ -1,9 +1,11 @@
 import { bootstrapApplication } from '@angular/platform-browser';
-import { Component } from '@angular/core';
+import { Component, OnInit, OnDestroy } from '@angular/core';
 import { provideRouter, RouterOutlet, RouterLink } from '@angular/router';
 import { CommonModule } from '@angular/common';
 
-// 🥚 Main Page
+/* ===============================
+   🏠 HOME PAGE (with looping GIF)
+================================= */
 @Component({
   selector: 'home-page',
   standalone: true,
@@ -17,10 +19,11 @@ import { CommonModule } from '@angular/common';
         <p>Click Gudetama for some fun facts!</p>
 
         <div class="gif-container">
+          <!-- Clickable Gudetama -->
           <a routerLink="/gudetama">
             <img
               class="gudetama"
-              src="https://i.pinimg.com/originals/d7/a0/9f/d7a09ffd64f946e0087ed82b8c7a4665.gif"
+              [src]="gifUrl + cacheBuster"
               alt="Gudetama"
             />
           </a>
@@ -32,13 +35,36 @@ import { CommonModule } from '@angular/common';
     </div>
   `
 })
-export class HomePage {
+export class HomePage implements OnInit, OnDestroy {
+  gifUrl =
+    'https://i.pinimg.com/originals/d7/a0/9f/d7a09ffd64f946e0087ed82b8c7a4665.gif';
+  cacheBuster = '';
+  refreshMs = 3000; // adjust based on gif length
+  private timer?: number;
+
+  ngOnInit() {
+    this.startLoop();
+  }
+
+  ngOnDestroy() {
+    if (this.timer) clearInterval(this.timer);
+  }
+
+  startLoop() {
+    this.timer = window.setInterval(() => {
+      // Force reload by changing the URL slightly
+      this.cacheBuster = `?t=${Date.now()}`;
+    }, this.refreshMs);
+  }
+
   onClick() {
     console.log('Button clicked');
   }
 }
 
-// 🍳 Gudetama Fun Facts Page
+/* ===============================
+   🍳 GUDETAMA FUN FACTS PAGE
+================================= */
 @Component({
   selector: 'gudetama-page',
   standalone: true,
@@ -48,11 +74,11 @@ export class HomePage {
       <div class="card">
         <h2>🥚 Gudetama Fun Facts</h2>
         <ul class="facts">
-          <li>Gudetama’s name comes from “gude gude” (lazy) and “tamago” (egg).</li>
-          <li>He first appeared in 2013 as part of a Sanrio character contest.</li>
-          <li>He hates getting up and prefers to stay under his bacon blanket.</li>
-          <li>He’s voiced by a real person who sighs instead of talking!</li>
-          <li>Gudetama has his own Netflix show — “Gudetama: An Eggcellent Adventure.”</li>
+          <li>"Gudetama" comes from "gude gude" (lazy) and "tamago" (egg).</li>
+          <li>He first appeared in a 2013 Sanrio character contest.</li>
+          <li>Prefers to stay under his bacon blanket instead of working.</li>
+          <li>His voice actress mostly sighs instead of talking!</li>
+          <li>He even has a Netflix show — “Gudetama: An Eggcellent Adventure.”</li>
         </ul>
         <a routerLink="/" class="btn">⬅ Back</a>
       </div>
@@ -61,13 +87,14 @@ export class HomePage {
 })
 export class GudetamaPage {}
 
-// 🧭 Routes
+/* ===============================
+   🚀 APP ROUTING + BOOTSTRAP
+================================= */
 const routes = [
   { path: '', component: HomePage },
   { path: 'gudetama', component: GudetamaPage },
 ];
 
-// 🚀 Bootstrap the app with routing
 @Component({
   selector: 'app-root',
   standalone: true,
