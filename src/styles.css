@@ -119,3 +119,18 @@ input[type="text"]:focus {
   box-shadow: 0 3px #666;
   transform: translateY(4px);
 }
+
+.facts {
+  text-align: left;
+  list-style: none;
+  padding-left: 0;
+  margin-top: 10px;
+}
+
+.facts li {
+  background: #f9fafb;
+  margin-bottom: 8px;
+  padding: 8px 10px;
+  border-radius: 8px;
+  box-shadow: 0 2px 4px rgba(0,0,0,0.05);
+}
