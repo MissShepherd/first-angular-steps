@@ -13,9 +13,10 @@ body {
   text-align: center;
 }
 
+/* 🟪 Fancy Button restored */
 .btn {
-  display: inline-block;  
-  width: 315px;  
+  display: inline-block;
+  width: 280px;
   background-color: #4e46e5;
   color: #fff;
   border: none;
@@ -24,19 +25,21 @@ body {
   cursor: pointer;
   font-size: 16px;
   transition: 0.2s ease;
-  box-shadow: 0 9px #999;
-}
-
-.btn:active {
-  box-shadow: 0 5px #666;
-  transform: translateY(4px);
+  box-shadow: 0 6px #999;
 }
 
 .btn:hover {
   background-color: #38c0ca;
 }
 
+.btn:active {
+  box-shadow: 0 3px #666;
+  transform: translateY(4px);
+}
+
+/* 🃏 Card layout */
 .card {
+  position: relative;
   background: white;
   border-radius: 12px;
   box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
@@ -44,6 +47,7 @@ body {
   margin-top: 20px;
   max-width: 300px;
   margin-inline: auto;
+  overflow: hidden;
 }
 
 .card h2 {
@@ -55,6 +59,7 @@ body {
   color: #4b5563;
 }
 
+/* 🔤 Input styling */
 input[type="text"] {
   width: 280px;
   padding: 12px 16px;
@@ -66,6 +71,7 @@ input[type="text"] {
   background-color: #ffffff;
   color: #111827;
   box-shadow: 0 2px 6px rgba(0, 0, 0, 0.05);
+  margin-bottom: 12px;
 }
 
 input[type="text"]::placeholder {
@@ -83,10 +89,25 @@ input[type="text"]:focus {
   background-color: #f9fafb;
 }
 
-.gif {
-  display: block;
-  margin: 0 auto 15px auto;
-  max-width: 280px;
-  border-radius: 10px;
-  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+/* 🥚 Gudetama movement */
+.gif-container {
+  position: relative;
+  width: 100%;
+  height: 150px;
+  margin-bottom: 10px;
+}
+
+.gudetama {
+  position: absolute;
+  width: 90px;
+  height: auto;
+  animation: gudetamaMove 8s infinite ease-in-out;
+}
+
+@keyframes gudetamaMove {
+  0%   { left: 0; top: 0; }
+  25%  { left: calc(100% - 90px); top: 0; }
+  50%  { left: calc(100% - 90px); top: calc(100% - 90px); }
+  75%  { left: 0; top: calc(100% - 90px); }
+  100% { left: 0; top: 0; }
 }
