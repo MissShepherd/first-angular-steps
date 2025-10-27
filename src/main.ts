@@ -1,5 +1,5 @@
 import { bootstrapApplication } from '@angular/platform-browser';
-import { Component } from '@angular/core';
+import { Component, OnInit, OnDestroy } from '@angular/core';
 
 @Component({
   selector: 'app-root',
@@ -14,7 +14,7 @@ import { Component } from '@angular/core';
         <div class="gif-container">
           <img
             class="gudetama"
-            src="https://i.pinimg.com/originals/d7/a0/9f/d7a09ffd64f946e0087ed82b8c7a4665.gif"
+            [src]="gifUrl + cacheBuster"
             alt="Gudetama"
           />
         </div>
@@ -25,7 +25,28 @@ import { Component } from '@angular/core';
     </div>
   `
 })
-export class AppComponent {
+export class AppComponent implements OnInit, OnDestroy {
+  gifUrl =
+    'https://i.pinimg.com/originals/d7/a0/9f/d7a09ffd64f946e0087ed82b8c7a4665.gif';
+  cacheBuster = '';
+  refreshMs = 3000; // adjust based on gif length (ms)
+  private timer?: number;
+
+  ngOnInit() {
+    this.startLoop();
+  }
+
+  ngOnDestroy() {
+    if (this.timer) clearInterval(this.timer);
+  }
+
+  startLoop() {
+    this.timer = window.setInterval(() => {
+      // Force reload by changing the URL slightly
+      this.cacheBuster = `?t=${Date.now()}`;
+    }, this.refreshMs);
+  }
+
   onClick() {
     console.log('Button clicked');
   }
