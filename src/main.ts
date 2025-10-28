@@ -87,9 +87,6 @@ export class HomePage implements OnInit, OnDestroy {
 })
 export class GudetamaPage {}
 
-/* ===============================
-   🚀 APP ROUTING + BOOTSTRAP
-================================= */
 const routes = [
   { path: '', component: HomePage },
   { path: 'gudetama', component: GudetamaPage },
